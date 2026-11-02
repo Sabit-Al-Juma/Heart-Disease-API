@@ -5,7 +5,7 @@ import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 
-from schemas import HeartFeatures, HealthResponse, InfoResponse, PredictionResponse
+from app.schemas import HeartFeatures, HealthResponse, InfoResponse, PredictionResponse
 
 MODEL_PATH = Path(__file__).parent / "model" / "heart_model.joblib"
 state: dict = {}
