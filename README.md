@@ -106,27 +106,29 @@ Then open http://localhost:8000/docs.
 python -m venv venv
 # Windows: .\venv\Scripts\Activate.ps1    macOS/Linux: source venv/bin/activate
 pip install -r requirements.txt
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 ## Project structure
 
 ```
 .
-├── main.py               # FastAPI app and endpoints
-├── schemas.py            # Pydantic request/response models
+├── app/
+│   ├── __init__.py
+│   ├── main.py           # FastAPI app and endpoints
+│   └── schemas.py        # Pydantic request/response models
+├── model/
+│   └── heart_model.joblib
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
 ├── .dockerignore
-├── .gitignore
-└── model/
-    └── heart_model.joblib
+└── .gitignore
 ```
 
 ## Deployment
 
-The app is deployed on Render as a Docker web service built from this repository. The container reads the `PORT` environment variable (default `8000` locally), and `/health` is used as the health check path.
+The app is deployed on Render as a Docker web service built from this repository. The Docker image copies the `app/` package and the `model/` folder and starts the server with `uvicorn app.main:app`. The container reads the `PORT` environment variable (default `8000` locally), and `/health` is used as the health check path.
 
 ## Notes
 
