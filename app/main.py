@@ -7,7 +7,7 @@ from fastapi import FastAPI, HTTPException
 
 from app.schemas import HeartFeatures, HealthResponse, InfoResponse, PredictionResponse
 
-MODEL_PATH = Path(__file__).parent / "model" / "heart_model.joblib"
+MODEL_PATH = Path(__file__).resolve().parent.parent / "model" / "heart_model.joblib"
 state: dict = {}
 
 
